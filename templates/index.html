@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <h1>Student Login</h1>
+  
+  <form id="login-form">
+    <input placeholder="Pick a username..." required type=text name="username">
+    <input placeholder="Classroom to join..." required type=text name="classroom">
+    <button hx-post="/login" hx-trigger="click" hx-target="#content" hx-swap="outerHTML">Login</button>
+  </form>
+{% endblock %}
