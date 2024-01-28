@@ -8,8 +8,8 @@ pub struct Opts {
     #[arg(long, short, env = "LISTEN_ADDR", default_value = "[::1]:3000")]
     pub listen_addr: String,
 
-    #[arg(long, env = "REDB_FILE", default_value = "db.redb")]
-    pub db: PathBuf,
+    #[arg(long, env = "DB_PATH", default_value = "db.redb")]
+    pub db_path: PathBuf,
 
     #[arg(long, env = "DEBUG_DELAY")]
     pub debug_delay: bool,

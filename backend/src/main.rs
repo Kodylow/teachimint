@@ -8,6 +8,7 @@ mod service;
 mod opts;
 mod ws;
 mod error;
+mod db;
 
 use crate::service::Service;
 
