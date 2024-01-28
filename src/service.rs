@@ -1,8 +1,7 @@
 
 use askama::Template;
-use axum::{http::{Response, StatusCode}, response::IntoResponse, routing::{get, post}, Router};
+use axum::{response::IntoResponse, routing::{get, post}, Router};
 use tower_http::validate_request::ValidateRequestHeaderLayer;
-use tracing::info;
 
 
 use crate::{opts::Opts, ws::upgrade_ws};
@@ -38,7 +37,6 @@ pub fn create_router(opts: Opts) -> Router {
         // .layer(cors)
         .layer(ValidateRequestHeaderLayer::bearer(&opts.password))
         .route("/", get(handle_home))
-        .route("/styles.css", get(styles))
         .route("/teacher", post(handle_teacher))
         .route("/student", post(handle_student))
 }
@@ -53,15 +51,6 @@ async fn handle_teacher() -> impl IntoResponse {
 
 async fn handle_student() -> impl IntoResponse {
     StudentTemplate
-}
-
-pub async fn styles() -> impl IntoResponse {
-    Response::builder()
-        .status(StatusCode::OK)
-        .header("Content-Type", "text/css")
-        .body(include_str!("../templates/styles.css").to_owned())
-        .unwrap()
-
 }
 
 #[derive(Template)]
