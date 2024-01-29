@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Paragraphs */
+.markdown p {
+  @apply text-inherit text-body leading-5 tracking-[-1%] font-normal;
+  overflow-wrap: break-word;
+}
+
+/* Inline elements */
+.markdown p strong {
+  @apply font-bold;
+}
+
+.markdown code {
+  @apply text-small bg-extraLightGrey/75 p-1 rounded-md border-0;
+}
+
+.markdown a {
+  @apply underline text-darkGrey h-full;
+}
+
+/* Headings */
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  @apply font-bold leading-[1.5];
+  overflow-wrap: break-word;
+  font-family: "Albert Sans", sans-serif;
+}
+
+.markdown h1 {
+  @apply text-h1 font-bolder;
+}
+
+.markdown h2 {
+  @apply text-h2 font-bolder;
+}
+
+.markdown h3 {
+  font-size: 22px;
+}
+
+.markdown h4 {
+  font-size: 20px;
+}
+
+/* Code blocks */
+.markdown pre {
+  @apply !bg-transparent;
+}
+
+.markdown pre code {
+  @apply p-2 text-caption border-0 rounded-sm;
+}
+
+.markdown pre code span {
+  @apply !bg-transparent;
+}
+
+/* Lists */
+.markdown ul {
+  @apply list-disc list-inside;
+}
+
+.markdown ol {
+  @apply list-decimal list-inside;
+}
+
+.markdown img {
+  @apply border border-lightGrey rounded-md max-w-[480px];
+}

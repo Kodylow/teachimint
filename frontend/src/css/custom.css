@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./config.css";
+@import "./override.css";
+@import "./markdown.css";
+
+/**
+ * Default tailwind base layer styles.
+ */
+
+@layer base {
+  * {
+    margin: 0;
+    scrollbar-width: thin;
+    scrollbar-color: lightgrey white;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    @apply h-full text-primary;
+    font-family: "Albert Sans", sans-serif;
+    overscroll-behavior: none;
+  }
+
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    background-attachment: fixed;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    background: none;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+
+  video {
+    border-radius: 8px;
+    max-height: 400px;
+  }
+}

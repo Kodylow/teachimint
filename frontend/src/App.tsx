@@ -3,10 +3,11 @@ import './App.css';
 import Home from './pages/Home';
 import Student from './pages/Student';
 import Teacher from './pages/Teacher';
-import Navbar from './components/Navbar';
+import Navbar from './components/nav/Navbar';
 
 function App() {
   return (
+    <div className="text-green-500 font-mono">
     <Router>
       <Navbar />
       <Routes>
@@ -15,6 +16,7 @@ function App() {
         <Route path="/teacher" element={<Teacher />} />
       </Routes>
     </Router>
+    </div>
   );
 }
 

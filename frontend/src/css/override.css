@@ -1,0 +1,138 @@
+@tailwind base;
+/**
+ * Forcefully override default docusaurus styles
+ */
+
+.theme-code-block {
+  background: rgba(var(--extraLightGrey) / 0.5) !important;
+  border: rgb(var(--extraLightGrey));
+  box-shadow: none !important;
+}
+
+.container {
+  max-width: 1200px !important;
+  width: 100% !important;
+}
+
+.navbar__link {
+  @apply flex gap-2 items-center relative text-primary hover:text-primary cursor-pointer text-base font-bold;
+}
+
+.navbar__link svg {
+  @apply hidden;
+}
+
+.navbar__title {
+  @apply text-primary hover:text-primary;
+}
+
+.menu__link.menu__link--active {
+  @apply text-primary bg-extraLightGrey/50 hover:bg-extraLightGrey;
+}
+
+.theme-edit-this-page {
+  @apply flex gap-1 items-center text-grey underline;
+}
+
+.copy-btn.clean-btn {
+  @apply !p-1 top-1 right-1;
+}
+
+.breadcrumbs {
+  @apply flex items-center;
+}
+
+.breadcrumbs__item {
+  @apply self-center flex items-center;
+}
+
+.navbar-sidebar__back.clean-btn {
+  @apply text-darkGrey !mx-0 !mt-0 mb-sm hover:bg-extraLightGrey/50 top-0 !w-full rounded-md px-md py-xs text-base;
+}
+
+/* Search bar */
+
+.navbar__search {
+  @apply w-full flex;
+}
+
+.navbar__search span {
+  @apply !w-full grow flex;
+}
+
+.navbar__search-input {
+  @apply !w-full grow bg-white border border-lightGrey border-solid !py-md rounded-xl !h-auto;
+}
+
+nav.navbar--fixed-top .navbar__search {
+  @apply !w-full flex !grow max-w-[320px] !ml-0 !mr-0;
+}
+
+nav.navbar--fixed-top .navbar__search-input {
+  @apply !h-[36px];
+}
+
+nav.navbar--fixed-top .navbar__items--right {
+  @apply flex grow relative !px-0 items-center;
+}
+
+nav.navbar--fixed-top .navbar__items--right > div {
+  @apply !p-0 !grow !flex w-full justify-end !left-0 !right-0;
+}
+
+.welcome .navbar__search {
+  @apply !ml-0;
+}
+
+.navbar__search kbd {
+  @apply text-grey p-xs rounded bg-white border-lightGrey rounded-md shadow-none text-small;
+}
+
+.navbar__search span[role="listbox"] {
+  @apply max-h-[50vh] overflow-y-auto p-0 rounded-lg min-w-[320px] max-w-[100vw];
+}
+
+.welcome .navbar__search span[role="listbox"] {
+  left: 50% !important;
+  right: unset !important;
+  transform: translateX(-50%) !important;
+}
+
+nav.navbar--fixed-top .navbar__search span[role="listbox"] {
+  right: 0 !important;
+  left: unset !important;
+  max-width: calc(100vw - 32px) !important;
+}
+
+/* Search results */
+
+.navbar__search div[role="option"] {
+  @apply !shadow-none !rounded-none px-md py-sm !border !border-b !border-extraLightGrey !border-solid !mb-0 last:border-b-0;
+}
+
+.navbar__search div[aria-selected="true"] {
+  @apply !bg-extraLightGrey/50 !text-primary;
+}
+
+.navbar__search div[role="option"] > span {
+  @apply grow;
+}
+
+.navbar__search div[role="option"] > span:has(> svg) {
+  flex-grow: 0 !important;
+  max-width: 16px !important;
+}
+
+.navbar__search div[role="option"] > span > svg {
+  @apply !w-[16px] !h-[16px];
+}
+
+.navbar__search div[role="option"] > span > span {
+  @apply !inline;
+}
+
+@media (max-width: 1000px) {
+  .navbar__item.navbar__link {
+    display: none;
+  }
+}

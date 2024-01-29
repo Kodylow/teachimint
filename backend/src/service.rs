@@ -1,5 +1,5 @@
-use axum::{response::IntoResponse, routing::get, Router};
-use tower_http::validate_request::ValidateRequestHeaderLayer;
+use axum::{http::{HeaderValue, Method}, response::IntoResponse, routing::get, Router};
+use tower_http::{cors::CorsLayer, validate_request::ValidateRequestHeaderLayer};
 use anyhow::Result;
 
 use crate::{opts::Opts, ws::upgrade_ws, db::Database};
@@ -33,10 +33,14 @@ impl AppState {
 
 pub fn create_router(opts: Opts) -> Result<Router> {
     let state = AppState::new(&opts)?;
+    let cors = CorsLayer::new()
+        .allow_methods(vec![Method::GET, Method::POST])
+        .allow_origin(HeaderValue::from_static("http://localhost:5172"))
+        .allow_credentials(false);
     Ok(Router::new()
         .route("/ws", get(upgrade_ws))
         .with_state(state)
-        // .layer(cors)
+        .layer(cors)
         .layer(ValidateRequestHeaderLayer::bearer(&opts.password))
         .route("/", get(handle_index)))
 }
