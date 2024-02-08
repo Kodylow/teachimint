@@ -1,39 +1,73 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+//import { useNavigate } from "react-router-dom";
+import { TextInput } from "../inputs/TextInput";
+import { Button } from "../inputs/Button";
 
-function TeacherLogin() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const navigate = useNavigate()
+export function TeacherLogin() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  //const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const response = await fetch('http://localhost:3000/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ username, password })
-    })
+    window.alert(`TODO: Send request to login
+    username: ${username}
+    password: ${password}`);
 
-    if (response.ok) {
-      const { token } = await response.json()
-      localStorage.setItem('token', token)
-      navigate('/teacher')
-    } else {
-      // Handle error
-      console.error('Login failed')
-    }
-  }
+    // const response = await fetch("http://localhost:3000/login", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ username, password }),
+    // });
+
+    // if (response.ok) {
+    //   const { token } = await response.json();
+    //   localStorage.setItem("token", token);
+    //   navigate("/teacher");
+    // } else {
+    //   // Handle error
+    //   console.error("Login failed");
+    // }
+  };
+
+  const formValid = username && password;
+  const credentialsValid = true;
+
+  const labelClassName = "block text-gray-700 text-sm font-bold -mb-3";
 
   return (
-    <form onSubmit={handleLogin} className="flex flex-col space-y-4">
-      <input className="p-2 border border-green-500 rounded" type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
-      <input className="p-2 border border-green-500 rounded" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-      <button className="p-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors" type="submit">Login</button>
-    </form>
-  )
-}
+    <form onSubmit={handleLogin} className="flex flex-col gap-4">
+      <label className={labelClassName} htmlFor="username">
+        Username
+      </label>
+      <TextInput
+        placeholder="Username"
+        value={username}
+        id="username"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+      />
 
-export default TeacherLogin
+      <label className={labelClassName} htmlFor="password">
+        Password
+      </label>
+      <TextInput
+        placeholder="Password"
+        type="password"
+        value={password}
+        id="password"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+      />
+      {!credentialsValid && (
+        <p className="text-red-500 text-xs italic">Invalid Username or Password.</p>
+      )}
+      <Button type="submit" text="Login" disabled={!formValid} />
+      {/* TODO: add functionality to reset password */}
+      <a className="font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+        Forgot Password?
+      </a>
+    </form>
+  );
+}
