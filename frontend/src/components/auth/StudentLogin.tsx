@@ -49,16 +49,26 @@ export function StudentLogin() {
 
   const validClassroomId = true;
 
+  const labelClassName = "block text-gray-700 text-sm font-bold -mb-3";
+
   return (
     <form onSubmit={handleJoin} className="flex flex-col gap-4">
+      <label className={labelClassName} htmlFor="display-name">
+        Display Name
+      </label>
       <TextInput
+        id="display-name"
         placeholder="Display name"
         value={studentDisplayName}
         onChange={handleDisplayNameUpdate}
       />
       <Toggle labelText="Private classroom" onChange={handleClassroomTypeUpdate} />
+      <label className={labelClassName} htmlFor="classroom-id">
+        Classroom ID
+      </label>
       {classroomType === "public" && (
         <Dropdown
+          id="classroom-id"
           placeholder="Select Classroom"
           value={classroom}
           options={classroomOptions}
@@ -67,6 +77,7 @@ export function StudentLogin() {
       )}
       {classroomType === "private" && (
         <TextInput
+          id="classroom-id"
           placeholder="Classroom ID"
           value={classroom}
           className={!validClassroomId ? "border-red-500 focus:outline-red-500" : ""}
