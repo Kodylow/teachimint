@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { Toggle } from "../inputs/Toggle";
 import { Dropdown } from "../inputs/Dropdown";
 import { TextInput } from "../inputs/TextInput";
@@ -10,7 +10,7 @@ export function StudentLogin() {
   const [classroomOptions, setClassroomOptions] = useState<string[]>([]);
   const [classroomType, setClassroomType] = useState("public");
   const [studentDisplayName, setStudentDisplayName] = useState("");
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleDisplayNameUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStudentDisplayName(e.target.value);
@@ -42,7 +42,7 @@ export function StudentLogin() {
     Classroom: ${classroom}
     Display name: ${studentDisplayName}`);
 
-    // navigate(`/student/${classroom}`);
+    navigate(`/student/${classroom}`);
   };
 
   const formValid = studentDisplayName && classroom;

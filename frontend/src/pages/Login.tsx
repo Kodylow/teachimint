@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { StudentLogin } from "./StudentLogin";
-import { TeacherLogin } from "./TeacherLogin";
-import { Dropdown } from "../inputs/Dropdown";
+import { StudentLogin } from "../components/auth/StudentLogin";
+import { TeacherLogin } from "../components/auth/TeacherLogin";
+import { Dropdown } from "../components/inputs/Dropdown";
 
 export const Login = () => {
   const [role, setRole] = useState("Student");
@@ -11,8 +11,8 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-4xl text-green-500 mb-4">Login</h1>
+    <div className="bg-white shadow-lg rounded-lg p-8 flex flex-col gap-4 w-auto">
+      <h1 className="text-4xl">Login</h1>
       <Dropdown options={roles} onChange={handleUpdateRole} value={role} />
       {role === "Student" ? <StudentLogin /> : <TeacherLogin />}
     </div>

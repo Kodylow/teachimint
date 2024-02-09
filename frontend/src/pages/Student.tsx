@@ -1,60 +1,21 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useWebSocket } from "../hooks/useWebsocket";
+import { Cups } from "../components/cups/Cups";
 
-function Student() {
+export function Student() {
   const { classroom } = useParams();
-  const { send } = useWebSocket();
-  const [selected, setSelected] = useState("");
-  const [message, setMessage] = useState("");
 
   console.log("classroom", classroom);
-  console.log("send", send);
-  if (!classroom || !send) return null;
+  if (!classroom) return null;
 
-  const handleCircleClick = (color: string) => {
-    const params = { classroom: classroom, status: color };
-    setSelected(color);
-    // send({
-    //   method: "updateStatus",
-    //   params: JSON.stringify(params),
-    // });
-  };
-
-  const handleSendChatMessage = () => {
-    // send({
-    //   method: "sendChatMessage",
-    //   params: JSON.stringify({ classroom: classroom, message: message }),
-    //   onResponse: (response) => console.log(response),
-    // });
-    setMessage("");
-  };
   return (
-    <div>
-      <div>
-        <div
-          onClick={() => handleCircleClick("red")}
-          className={selected === "red" ? "selected" : ""}
-        >
-          Red
+    <div className="flex gap-10 w-full h-full">
+      <div className="flex-auto w-3/4 flex flex-col gap-10">
+        <div className="bg-black shadow-lg rounded-lg p-8 flex flex-col flex-auto h-2/3 w-full justify-center items-center gap-4">
+          VIDEO PLAYER
         </div>
-        <div
-          onClick={() => handleCircleClick("yellow")}
-          className={selected === "yellow" ? "selected" : ""}
-        >
-          Yellow
-        </div>
-        <div
-          onClick={() => handleCircleClick("green")}
-          className={selected === "green" ? "selected" : ""}
-        >
-          Green
-        </div>
+        <Cups />
       </div>
-      <textarea value={message} onChange={(e) => setMessage(e.target.value)} />
-      <button onClick={handleSendChatMessage}>Send</button>
+      <div className="flex-auto w-1/4"> chat log </div>
     </div>
   );
 }
-
-export default Student;
